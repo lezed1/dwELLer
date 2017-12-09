@@ -1,5 +1,9 @@
 import { actionCreator } from './helpers';
 
-export type IAddIDPayload = { id: string };
+export type IAddSwipePayload = {
+    id: string;
+    timestamp: Date;
+    direction: string;
+};
 
-export const addID = actionCreator('ADD_ID');
+export const addSwipe = actionCreator('ADD_SWIPE');

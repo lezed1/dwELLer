@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { IAddSwipePayload } from '../actions/home';
 // import { Link } from 'react-router-dom';
 // import styles from './MainInput.css';
 
-export default class IDInput extends React.Component<{addID: (id: string) => void;}, {value: string}> {
+export default class IDInput extends React.Component<{addSwipe: (swipe: IAddSwipePayload) => void;}, {value: string}> {
   state = {
     value: ''
   }
@@ -30,8 +31,12 @@ export default class IDInput extends React.Component<{addID: (id: string) => voi
       return;
     }
 
-    const id = m[1];
-    this.props.addID(id);
+    const swipe: IAddSwipePayload = {
+      id: m[1],
+      timestamp: new Date(),
+      direction: 'enter'
+    };
+    this.props.addSwipe(swipe);
   }
 
   render() {
