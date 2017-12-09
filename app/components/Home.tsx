@@ -2,14 +2,12 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import IDInput from './IDInput';
-import { TState } from '../reducers/swipeLog';
-import { IAddSwipePayload } from '../actions/home';
+import { IAddSwipePayload } from '../actions/swipe';
 
 // let styles = require('bootstrap/dist/css/bootstrap.min.css');
 
 export interface IProps extends RouteComponentProps<any> {
   addSwipe(swipe : IAddSwipePayload): void,
-  swipes : TState,
 }
 
 export class Home extends React.Component<IProps, any> {

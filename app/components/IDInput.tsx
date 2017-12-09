@@ -1,9 +1,15 @@
 import * as React from 'react';
-import { IAddSwipePayload } from '../actions/home';
-// import { Link } from 'react-router-dom';
-// import styles from './MainInput.css';
+import { IAddSwipePayload } from '../actions/swipe';
 
-export default class IDInput extends React.Component<{addSwipe: (swipe: IAddSwipePayload) => void;}, {value: string}> {
+export interface IProps {
+  addSwipe(swipe : IAddSwipePayload): void,
+}
+
+export interface IState {
+  value: string,
+}
+
+export class IDInput extends React.Component<IProps, IState> {
   state = {
     value: ''
   }
@@ -58,3 +64,5 @@ export default class IDInput extends React.Component<{addSwipe: (swipe: IAddSwip
     );
   }
 }
+
+export default IDInput;

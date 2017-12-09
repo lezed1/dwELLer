@@ -2,7 +2,7 @@ import { appendFileSync, readFileSync } from 'fs';
 // import  * as parse from 'csv-parse/lib/sync';
 // import  * as stringify from 'csv-stringify/lib/sync';
 import { IActionWithPayload } from '../actions/helpers';
-import { addSwipe, IAddSwipePayload } from '../actions/home';
+import { addSwipe, IAddSwipePayload } from '../actions/swipe';
 
 const parse = require('csv-parse/lib/sync');
 const stringify = require('csv-stringify/lib/sync');
