@@ -16,7 +16,7 @@ const swiplog_columns = ["id", "timestamp", "direction"];
 function getPreviousSwipes() {
   try {
     const swipelog_csv = readFileSync(swipelog_filename);
-    const swipelog = parse(swipelog_csv, { columns: swiplog_columns });
+    const swipelog = parse(swipelog_csv, { columns: swiplog_columns, auto_parse: true, auto_parse_date: true });
     return swipelog;
   } catch (error) {
     return [];
@@ -25,7 +25,7 @@ function getPreviousSwipes() {
 
 export default function home(state: TState = getPreviousSwipes(), action: IActionWithPayload<IAddSwipePayload>): TState {
   if (addSwipe.test(action)) {
-    appendFileSync(swipelog_filename, stringify([action.payload], { columns: swiplog_columns, auto_parse: true, auto_parse_date: true }));
+    appendFileSync(swipelog_filename, stringify([action.payload], { columns: swiplog_columns }));
     return [...state, action.payload];
   }
 

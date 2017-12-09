@@ -8,8 +8,8 @@ import { IAddSwipePayload } from '../actions/home';
 // let styles = require('bootstrap/dist/css/bootstrap.min.css');
 
 export interface IProps extends RouteComponentProps<any> {
-  addSwipe(swipe : IAddSwipePayload): void;
-  swipes : TState;
+  addSwipe(swipe : IAddSwipePayload): void,
+  swipes : TState,
 }
 
 export class Home extends React.Component<IProps, any> {

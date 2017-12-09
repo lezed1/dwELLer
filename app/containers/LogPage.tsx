@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect, Dispatch } from 'react-redux';
-import { Home, IProps } from '../components/Home';
+import { LogViewer, IProps } from '../components/LogViewer';
 import { IState } from '../reducers/index';
-import * as HomeActions from '../actions/home';
 
 
 function mapStateToProps(state: IState): Partial<IProps> {
@@ -13,7 +12,7 @@ function mapStateToProps(state: IState): Partial<IProps> {
 }
 
 function mapDispatchToProps(dispatch: Dispatch<IState>): Partial<IProps> {
-  return bindActionCreators(HomeActions as any, dispatch);
+  return bindActionCreators({}, dispatch);
 }
 
-export default (connect(mapStateToProps, mapDispatchToProps)(Home) as any as React.StatelessComponent<IProps>);
+export default (connect(mapStateToProps, mapDispatchToProps)(LogViewer) as any as React.StatelessComponent<IProps>);
