@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import IDInput from './IDInput';
 import { IAddSwipePayload } from '../actions/swipe';
 
-// let styles = require('bootstrap/dist/css/bootstrap.min.css');
-
 export interface IProps extends RouteComponentProps<any> {
   addSwipe(swipe : IAddSwipePayload): void,
 }
