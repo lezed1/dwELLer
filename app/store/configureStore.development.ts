@@ -5,7 +5,7 @@ import { routerMiddleware, push } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 
-import * as counterActions from '../actions/counter';
+import * as swipeActions from '../actions/swipe';
 
 declare const window: Window & {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?(a: any): void;
@@ -18,7 +18,7 @@ declare const module: NodeModule & {
 };
 
 const actionCreators = Object.assign({}, 
-  counterActions,
+  swipeActions,
   {push}
 );
 
