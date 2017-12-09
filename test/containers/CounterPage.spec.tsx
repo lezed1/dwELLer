@@ -52,7 +52,7 @@ describe('containers', () => {
     });
 
     it('should change if odd and if odd button clicked', () => {
-      const { buttons, p } = setup({ counter: 1, home: [] });
+      const { buttons, p } = setup({ counter: 1, swipelog: [] });
       buttons.at(2).simulate('click');
       expect(p.text()).toMatch(/^2$/);
     });

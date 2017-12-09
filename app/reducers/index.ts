@@ -1,17 +1,17 @@
 import { combineReducers, Reducer } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import counter, { TState as TCounterState } from './counter';
-import home, { TState as THomeState } from './home';
+import swipelog, { TState as TSwipeLogState } from './swipeLog';
 
 const rootReducer = combineReducers({
   counter,
-  home,
+  swipelog,
   routing: routing as Reducer<any>
 });
 
 export interface IState {
   counter: TCounterState;
-  home: THomeState;
+  swipelog: TSwipeLogState;
 }
 
 export default rootReducer;

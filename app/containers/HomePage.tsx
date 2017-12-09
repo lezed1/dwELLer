@@ -8,7 +8,7 @@ import * as HomeActions from '../actions/home';
 
 function mapStateToProps(state: IState): Partial<IProps> {
   return {
-    swipes: state.home
+    swipes: state.swipelog
   };
 }
 
