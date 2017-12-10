@@ -30,18 +30,26 @@ export class IDInput extends React.Component<IProps, IState> {
     this.setState({ value: '' });
     event.preventDefault();
 
-    const m = input.match(/;2551000(\d{7})\d\?/);
+    let id;
 
-    if (!m) {
-      alert(`Invalid input ${input}`);
-      return;
+    if (input.match(/\d{7}/)) {
+      id = input;
+    } else {
+      const m = input.match(/;2551000(\d{7})\d\?/);
+      if (m) {
+        id = m[1]
+      } else {
+        alert(`Invalid input ${input}`);
+        return;
+      }
     }
 
     const swipe: IAddSwipePayload = {
-      id: m[1],
+      id,
       timestamp: new Date(),
       direction: 'enter'
     };
+
     this.props.addSwipe(swipe);
   }
 
@@ -50,8 +58,9 @@ export class IDInput extends React.Component<IProps, IState> {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
+            ID:
             <input
+              autoFocus
               type="text"
               value={this.state.value}
               onChange={this.handleChange}

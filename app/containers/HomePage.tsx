@@ -7,7 +7,9 @@ import * as SwipeActions from '../actions/swipe';
 
 
 function mapStateToProps(state: IState): Partial<IProps> {
-  return {};
+  return {
+    swipelog: state.swipelog
+  };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<IState>): Partial<IProps> {

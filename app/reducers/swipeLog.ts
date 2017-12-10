@@ -7,11 +7,28 @@ import { addSwipe, IAddSwipePayload } from '../actions/swipe';
 const parse = require('csv-parse/lib/sync');
 const stringify = require('csv-stringify/lib/sync');
 
+export type TSwipe = {
+  id: string,
+  netid: string,
+  name: string,
+  team: string,
+  timestamp: Date,
+  direction: string,
+  is_trained: boolean,
+};
 
-export type TState = Array<IAddSwipePayload>;
+export type TState = Array<TSwipe>;
 
 const swipelog_filename = "swipelog.csv";
-const swiplog_columns = ["id", "timestamp", "direction"];
+const swiplog_columns = ["id", "netid", "name", "team", "timestamp", "direction", "is_trained"];
+
+const roster_filename = "roster.csv";
+const roster_columns = ["netid", "name", "id", "team", "is_trained"];
+const roster_csv = readFileSync(roster_filename);
+const roster = parse(roster_csv, { columns: roster_columns}).slice(1);
+const roster_by_id = Object.assign({}, ...roster.map((s: any) => ({[s.id]: s})));
+console.log(roster_by_id);
+
 
 function getPreviousSwipes() {
   try {
@@ -25,8 +42,34 @@ function getPreviousSwipes() {
 
 export default function home(state: TState = getPreviousSwipes(), action: IActionWithPayload<IAddSwipePayload>): TState {
   if (addSwipe.test(action)) {
-    appendFileSync(swipelog_filename, stringify([action.payload], { columns: swiplog_columns }));
-    return [...state, action.payload];
+    const person = roster_by_id[action.payload.id];
+
+    let swipe: TSwipe;
+
+    if (person) {
+      swipe = {
+        ...action.payload,
+        netid: person.netid,
+        name: person.name,
+        team: person.team,
+        is_trained: person.is_trained === "Y",
+      }
+    } else {
+      if (confirm(`ID ${action.payload.id} unrecognized. Add anyway?`)) {
+        swipe = {
+          ...action.payload,
+          netid: "",
+          name: "",
+          team: "",
+          is_trained: false,
+        }
+      } else {
+        return state;
+      }
+    } 
+    
+    appendFileSync(swipelog_filename, stringify([swipe], { columns: swiplog_columns }));
+    return [...state, swipe];
   }
 
   return state;

@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router';
-import { TState } from '../reducers/swipeLog';
+import { TState as TSwipeLogState } from '../reducers/swipeLog';
 import { Table } from 'react-bootstrap';
 import Moment from 'react-moment';
 
-export interface IProps extends RouteComponentProps<any> {
-    swipes : TState,
+export interface IProps {
+    swipes : TSwipeLogState,
 }
 
 export class LogViewer extends React.Component<IProps> {
@@ -16,15 +15,21 @@ export class LogViewer extends React.Component<IProps> {
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>NetID</th>
+                        <th>Name</th>
+                        <th>Team</th>
                         <th>Timestamp</th>
                         <th>Direction</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        swipes.map((swipe) =>
+                        swipes.map(swipe=>
                             <tr key={swipe.timestamp.toString()} >
                                 <td>{swipe.id}</td>
+                                <td>{swipe.netid}</td>
+                                <td>{swipe.name}</td>
+                                <td>{swipe.team}</td>
                                 <td>
                                     <Moment fromNow date={swipe.timestamp} />
                                 </td>
