@@ -32,16 +32,16 @@ export class IDInput extends React.Component<IProps, IState> {
 
     let id;
 
-    if (input.match(/\d{7}/)) {
+    if (input.match(/^\d{7}$/)) {
       id = input;
     } else {
       const m = input.match(/;2551000(\d{7})\d\?/);
-      if (m) {
-        id = m[1]
-      } else {
+      if (!m) {
         alert(`Invalid input ${input}`);
         return;
       }
+      
+      id = m[1];
     }
 
     const swipe: IAddSwipePayload = {
