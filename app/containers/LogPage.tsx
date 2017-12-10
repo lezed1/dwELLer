@@ -7,7 +7,7 @@ import { IState } from '../reducers/index';
 
 function mapStateToProps(state: IState): Partial<IProps> {
   return {
-    swipes: state.swipelog
+    swipes: state.swipelog.swipes,
   };
 }
 

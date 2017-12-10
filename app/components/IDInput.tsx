@@ -47,7 +47,7 @@ export class IDInput extends React.Component<IProps, IState> {
     const swipe: IAddSwipePayload = {
       id,
       timestamp: new Date(),
-      direction: 'enter'
+      direction: confirm("Press OK to enter, Cancel to exit") ? "enter" : "exit",
     };
 
     this.props.addSwipe(swipe);
