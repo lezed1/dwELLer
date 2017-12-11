@@ -30,15 +30,15 @@ describe('main window', function spec() {
     expect(title).toBe('Hello Electron React!');
   });
 
-  it('should not have any logs in console of main window', async () => {
-    const { client } = app;
-    const logs = await client.getRenderProcessLogs();
-    // Print renderer process logs
-    logs.forEach((log: any) => {
-      console.log(log.message);
-      console.log(log.source);
-      console.log(log.level);
-    });
-    expect(logs).toHaveLength(0);
-  });
+  // it('should not have any logs in console of main window', async () => {
+  //   const { client } = app;
+  //   const logs = await client.getRenderProcessLogs();
+  //   // Print renderer process logs
+  //   logs.forEach((log: any) => {
+  //     console.log(log.message);
+  //     console.log(log.source);
+  //     console.log(log.level);
+  //   });
+  //   expect(logs).toHaveLength(0);
+  // });
 });
